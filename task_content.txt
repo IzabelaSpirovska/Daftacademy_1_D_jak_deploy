@@ -1,0 +1,42 @@
+#--- TASK 1 -----------------------------------------------------------
+
+Stwórz ścieżkę '/' która zwracać będzie odpowiedź w postaci JSONa
+
+`{"message": "Hello World during the coronavirus pandemic!"}`
+
+PS 1 Zobacz co można znaleźć pod endpoitem `/docs`
+
+#--- TASK 2 -----------------------------------------------------------
+
+Stwórz ścieżkę '/method' która zwróci nazwę metody z jaką wykonano request.
+PS Wystarczy jeśli endpoint będzie obsługiwał requesty `GET`, `POST`, `PUT`, `DELETE`
+PS2 W kodzie nie wolno użyć żadnego `ifa`
+
+format odpowiedzi(JSON):
+`{"method": "METHOD"}`
+
+#--- TASK 3 -----------------------------------------------------------
+
+Stwórz ścieżkę `/patient`, która przyjmie request z metodą `POST` i danymi w formacie json w postaci:
+
+`{"name": "IMIE", "surename": "NAZWISKO"}`
+
+i zwróci JSON w postaci:
+
+`{"id": N, "patient": {"name": "IMIE", "surename": "NAZWISKO"}}`
+
+Gdzie `N` jest kolejnym numerem zgłoszonej osoby
+
+Naturalnie ścieżka ma działać dla dowolnych stringów (w kodowaniu utf-8) podanych w polach `name` i `surename`.
+
+#--- TASK 4 -----------------------------------------------------------
+
+Stwórz ścieżkę `/patient/{pk}`, która przyjmuje request w metodą GET.
+
+pk, powinien być liczbą. Najlepiej intem.
+
+W przypadku znalezienia takiego pacjenta, odpowiedź powinna wyglądać tak:
+`{"name": "NAME", "surename": "SURENAME"}`
+
+W przypadku nieznalezienia należy zwrócić odpowiedni kod http:
+https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
