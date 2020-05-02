@@ -80,21 +80,27 @@ def test_if_response_correct_get():
     # ARRANGE
     name = "Kamila"
     surname = "XVB"
-    counter = app.counter
-    pk = 0
- 
-    # ACT with wrong pk = 0
-    response1 = client.post('/patient', json={"name": name, "surname": surname})
-    response2 = client.get('/patient/{pk}', json = pk)
-    
+    counter = app.id_counter
+   
     # ACT with correct pk = counter
-    response3 = client.get('/patient/{pk}', json = counter)
- 
- 
-    # ASSERT
+    response1 = client.post('/patient', json={"name": name, "surname": surname})
+    response2 = client.get('/patient/{pk}', json = counter)
+    
+    #ASSERT
     assert response1.status_code == 200
     assert response1.json() == {"id": counter, "patient": {"name": name, "surname": surname}}
-
-    #assert response2.status_code == 404
-    assert response3.json() == {"name": name, "surname": surname}
+    assert response2.json() == {"name": name, "surname": surname} 
+    
+def test_if_response_incorrect_get():
+    name = "Kamila"
+    surname = "XVB"
+    counter = app.id_counter
+    wrong_pk = -5
+    
+    # ACT with wrong pk = -5
+    response1 = client.post('/patient', json={"name": name, "surname": surname})
+    response2 = client.get('/patient/{pk}', json = wrong_pk)
+ 
+    # ASSERT
+    assert response2.status_code == 404
     
