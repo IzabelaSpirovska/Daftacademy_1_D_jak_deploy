@@ -57,6 +57,7 @@ def method_delete():
 @app.post('/patient', response_model = Response)
 def patient_position(pt: Patient):
     patient_with_id = Response(id = app.id_counter, patient = pt)
+    app.data[app.id_counter] = pt
     app.id_counter += 1
     return patient_with_id
  
